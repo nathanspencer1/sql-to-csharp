@@ -1,24 +1,12 @@
 import React, { FunctionComponent } from "react";
-
-interface tableProps {
-  id: number;
-  columnName: string;
-  type: string;
-  computed: string;
-  length: number;
-  prec: number;
-  scale: number;
-  nullable: string;
-  altName: string;
-}
+import { TableProps } from "../interfaces/TableProps";
 
 interface TableInfoGridProps {
-  rows: tableProps[];
-  onRowsChange: (newRows: tableProps[]) => void;
+  rows: TableProps[];
+  onRowsChange: (newRows: TableProps[]) => void;
 }
 
 const TableInfoGrid: FunctionComponent<TableInfoGridProps> = ({ rows, onRowsChange }): JSX.Element => {
-
   const columns = [
     // { field: "id", headerName: "Id", hide: true },
     { field: "columnName", headerName: "Column Name" },
@@ -27,14 +15,17 @@ const TableInfoGrid: FunctionComponent<TableInfoGridProps> = ({ rows, onRowsChan
     { field: "length", headerName: "Length" },
     { field: "prec", headerName: "Prec" },
     { field: "scale", headerName: "Scale" },
-    { field: "nullable", headerName: "Nullable" },
-    { field: "altName", headerName: "C# Name", input: true },
+    { field: "nullable", headerName: "Nullable", type: "checkbox" },
+    { field: "altName", headerName: "C# Name", type: "text" },
+    { field: "public", headerName: "Pub.", type: "checkbox" },
+    { field: "property", headerName: "G/S", type: "checkbox" },
   ];
 
-  const handleNameChange = ({ target }) => {
+  const handleRowChange = ({ target }) => {
     const newRows = rows.map((r) => ({ ...r }));
     const coordinates = target.id.split("-");
-    newRows[Number(coordinates[0])].altName = target.value;
+    const column = columns[Number(coordinates[1])];
+    newRows[Number(coordinates[0])][column.field] = target.type === "checkbox" ? target.checked : target.value;
     onRowsChange(newRows);
   };
 
@@ -54,7 +45,7 @@ const TableInfoGrid: FunctionComponent<TableInfoGridProps> = ({ rows, onRowsChan
               <tr key={r_index}>
                 {columns?.map((c, c_index) => (
                   <td key={c_index}>
-                    {c.input ? <input type="text" value={r[c.field]} onChange={handleNameChange} id={r_index + "-" + c_index}></input> : r[c.field]}
+                    {c.type ? <input type={c.type} value={r[c.field]} checked={r[c.field]} onChange={handleRowChange} id={r_index + "-" + c_index}></input> : r[c.field]}
                   </td>
                 ))}
               </tr>
