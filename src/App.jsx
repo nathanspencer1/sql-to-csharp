@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "./css/tab.css";
+import "./css/button-green.css";
 import CSharpClass from "./components/CSharpClass.tsx";
 import ImportClipboardButton from "./components/ImportClipboardButton.tsx";
 import TableInfoGrid from "./components/TableInfoGrid.tsx";
@@ -27,6 +28,7 @@ function App() {
     setRows(newRows);
   };
   const handleRowsChange = (newRows) => setRows(newRows);
+  const Tabs = ["Entity", "DTO"];
 
   return (
     <div className="App">
@@ -37,22 +39,25 @@ function App() {
               <ImportClipboardButton onImport={handleClipboardImport} />
             </div>
             <div className="column50">
-              <button onClick={() => alert("In SSMS highlight a table name and press Alt+F1 to get the table info.\nCopy the table info into your clipboard and click the 'Import Clipboard' button.")}>?</button>
+              <button className="button-green"
+                onClick={() =>
+                  alert(
+                    "In SSMS highlight a table name and press Alt+F1 to get the table info.\nCopy the table info into your clipboard and click the 'Import Clipboard' button."
+                  )
+                }>
+                ?
+              </button>
             </div>
           </div>
           <TableInfoGrid rows={rows} onRowsChange={handleRowsChange} />
         </div>
         <div className="column33">
           <div className="tab">
-            <button className="tabLinks" onClick={() => setSelectedTab("Entity")}>
-              Entity
-            </button>
-            <button className="tabLinks" onClick={() => setSelectedTab("DTO")}>
-              DTO
-            </button>
-            <button className="tabLinks" onClick={() => setSelectedTab("Other")}>
-              Other
-            </button>
+            {Tabs.map((tab) => (
+              <button className={`tabLinks${selectedTab === tab ? " active" : ""}`} onClick={() => setSelectedTab(tab)}>
+                {tab}
+              </button>
+            ))}
           </div>
           {
             {

@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(88, 88, 88);
+  background-color: rgb(33, 33, 33);
 }
 
 .App {
@@ -13,8 +13,9 @@ table, th, td {
 }
 
 th, td {
-  background-color: rgb(179, 236, 255);
-  /* padding: 2px; */
+  background-color: rgb(47, 47, 47);
+  color: rgb(233, 233, 233);
+  padding: 1px 3px;
 }
 
 .row{

@@ -1,6 +1,6 @@
 
 
-.button-3 {
+.button-rainbow {
     padding: 0.6em 2em;
     border: none;
     outline: none;
@@ -15,7 +15,7 @@
     touch-action: manipulation;
   }
   
-  .button-3:before {
+  .button-rainbow:before {
     content: "";
     background: linear-gradient(
       45deg,
@@ -38,12 +38,12 @@
     -webkit-filter: blur(5px);
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    animation: glowing-button-3 20s linear infinite;
+    animation: glowing-button-rainbow 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
   }
   
-  @keyframes glowing-button-3 {
+  @keyframes glowing-button-rainbow {
     0% {
       background-position: 0 0;
     }
@@ -55,7 +55,7 @@
     }
   }
   
-  .button-3:after {
+  .button-rainbow:after {
     z-index: -1;
     content: "";
     position: absolute;

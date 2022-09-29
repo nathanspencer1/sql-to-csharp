@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "../css/button-3.css";
+import "../css/button-green.css";
 import { TableProps } from "../interfaces/TableProps";
 
 interface ImportClipboardButtonProps {
@@ -33,7 +33,7 @@ const ImportClipboardButton: FunctionComponent<ImportClipboardButtonProps> = ({ 
 
   return (
     <div>
-      <button id="button-3" className="button-3" onClick={handleClipboardImport}>
+      <button className="button-green" onClick={handleClipboardImport}>
         Import Clipboard
       </button>
     </div>
