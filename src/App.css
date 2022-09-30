@@ -30,6 +30,12 @@ th, td {
   flex: 33%;
 }
 
-.fill-vertical{
-  height: 50%;
+.left {
+  text-align: left;
+}
+
+.fa-github{
+  color: rgb(230, 230, 230);
+  font-size: xx-large;
+  margin: 3px 3px;
 }

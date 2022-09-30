@@ -23,7 +23,7 @@ const ImportClipboardButton: FunctionComponent<ImportClipboardButtonProps> = ({ 
         prec: Number(cells[4]),
         scale: Number(cells[5]),
         nullable: cells[6] === "yes",
-        altName: cells[0],
+        altName: cells[0].replace(/[Hh][Mm][Yy]/g, "Id").replace(/^[bs]/g, "").replace(" ", "_"),
         public: true,
         property: true,
       };
