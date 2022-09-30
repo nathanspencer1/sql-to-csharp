@@ -11,9 +11,13 @@ const ImportClipboardButton: FunctionComponent<ImportClipboardButtonProps> = ({ 
     const text = await navigator.clipboard.readText();
     const tRows = text?.split(/\r?\n/);
 
+    if (tRows[0].split("\t").length < 6) {
+      alert("Invalid table format.");
+      return;
+    }
+
     const newRows = tRows.map((r, index) => {
       const cells = r.split("\t");
-      console.log(cells[6], `'${cells[6]}'`, cells[6] === "yes");
       return {
         id: index,
         columnName: cells[0],
@@ -23,7 +27,10 @@ const ImportClipboardButton: FunctionComponent<ImportClipboardButtonProps> = ({ 
         prec: Number(cells[4]),
         scale: Number(cells[5]),
         nullable: cells[6] === "yes",
-        altName: cells[0].replace(/[Hh][Mm][Yy]/g, "Id").replace(/^[bs]/g, "").replace(" ", "_"),
+        altName: cells[0]
+          .replace(/[Hh][Mm][Yy]/g, "Id")
+          .replace(/^[bs]/g, "")
+          .replace(" ", "_"),
         public: true,
         property: true,
       };

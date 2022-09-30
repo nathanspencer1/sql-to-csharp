@@ -37,7 +37,7 @@ function App() {
         <div className="column50">
           <div className="row">
             <a href="https://github.com/nathanspencer1/sql-to-csharp" target={"blank"}>
-              <i class="fa fa-github" />
+              <i className="fa fa-github" />
             </a>
             <HelpButton />
             <ImportClipboardButton onImport={handleClipboardImport} />
@@ -47,7 +47,7 @@ function App() {
         <div className="column50">
           <div className="tab">
             {Tabs.map((tab) => (
-              <button className={`tabLinks${selectedTab === tab ? " active" : ""}`} onClick={() => setSelectedTab(tab)}>
+              <button key={tab} className={`tabLinks${selectedTab === tab ? " active" : ""}`} onClick={() => setSelectedTab(tab)}>
                 {tab}
               </button>
             ))}

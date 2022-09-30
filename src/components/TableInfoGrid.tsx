@@ -29,6 +29,19 @@ const TableInfoGrid: FunctionComponent<TableInfoGridProps> = ({ rows, onRowsChan
     onRowsChange(newRows);
   };
 
+  const handleKeyUp = (e) => {
+    if (!["Enter", "ArrowDown", "ArrowUp"].includes(e.code)) return;
+    let nextRowIncrement = (e.code === "Enter" && e.shiftKey) || e.code === "ArrowUp" ? -1 : 1;
+    const coordinates = e.target.id.split("-");
+    let nextRowIndex = Number(coordinates[0]) + nextRowIncrement;
+    let nextInputId = nextRowIndex + "-" + coordinates[1];
+    let nextInput = document.getElementById(nextInputId) as HTMLInputElement;
+    if (nextInput) {
+      nextInput.focus();
+      nextInput.select();
+    }
+  };
+
   return (
     <div>
       <div>
@@ -45,7 +58,18 @@ const TableInfoGrid: FunctionComponent<TableInfoGridProps> = ({ rows, onRowsChan
               <tr key={r_index}>
                 {columns?.map((c, c_index) => (
                   <td key={c_index}>
-                    {c.type ? <input type={c.type} value={r[c.field]} checked={r[c.field]} onChange={handleRowChange} id={r_index + "-" + c_index}></input> : r[c.field]}
+                    {c.type ? (
+                      <input
+                        type={c.type}
+                        value={r[c.field]}
+                        checked={r[c.field]}
+                        onChange={handleRowChange}
+                        onKeyUp={handleKeyUp}
+                        id={r_index + "-" + c_index}
+                      />
+                    ) : (
+                      r[c.field]
+                    )}
                   </td>
                 ))}
               </tr>
