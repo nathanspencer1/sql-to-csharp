@@ -30,7 +30,7 @@ const ImportClipboardButton: FunctionComponent<ImportClipboardButtonProps> = ({ 
         altName: cells[0]
           .replace(/[Hh][Mm][Yy]/g, "Id")
           .replace(/^[bs]/g, "")
-          .replace(" ", "_"),
+          .replace(/ /g, "_"),
         public: true,
         property: true,
       };

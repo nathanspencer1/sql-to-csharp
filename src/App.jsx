@@ -7,6 +7,7 @@ import ImportClipboardButton from "./components/ImportClipboardButton.tsx";
 import TableInfoGrid from "./components/TableInfoGrid.tsx";
 import DataTransferClass from "./components/CSharp/DataTransferClass";
 import HelpButton from "./components/HelpButton.tsx";
+import NullableReferenceTypeCheckBox from "./components/NullableReferenceTypeCheckBox.tsx";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Entity");
@@ -25,6 +26,7 @@ function App() {
       property: true,
     },
   ]);
+  const [nullableReferenceTypes, setNullableReferenceTypes] = useState(true);
   const handleClipboardImport = (newRows) => {
     setRows(newRows);
   };
@@ -41,6 +43,7 @@ function App() {
             </a>
             <HelpButton />
             <ImportClipboardButton onImport={handleClipboardImport} />
+            <NullableReferenceTypeCheckBox checked={nullableReferenceTypes} setChecked={setNullableReferenceTypes}/>
           </div>
           <TableInfoGrid rows={rows} onRowsChange={handleRowsChange} />
         </div>
@@ -54,8 +57,8 @@ function App() {
           </div>
           {
             {
-              Entity: <CSharpClass members={rows} />,
-              DTO: <DataTransferClass members={rows} />,
+              Entity: <CSharpClass members={rows} nullableReferenceTypes={nullableReferenceTypes} />,
+              DTO: <DataTransferClass members={rows} nullableReferenceTypes={nullableReferenceTypes} />,
               default: <h1>Error</h1>,
             }[selectedTab]
           }
