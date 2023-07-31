@@ -1,24 +1,14 @@
 # SQL to C#
 
-A tool used to help create Entity and DTO (Data Transfer Object) C# classes from a SQL table. In SSMS highlight a table name and press Alt+F1 to get the table info. You must have the database the table is in selected. Copy the table info into your clipboard and click the 'Import Clipboard' button to fill the table and generate the classes. You can change the C# Name of any property using the text field. You can also modify the checkboxes that control if a property is nullable, public, or has a getter/setter.
+A tool used to help create Entity and DTO (Data Transfer Object) C# classes from a database table.
 
-## Available Scripts
+## How To Use
+In general the tool works by importing table column information. See below for specifics on how to get column details for your database. Once imported, you can change the C# Name of any property using the text field. You can also modify the checkboxes that control if a property is nullable, public, or has a getter/setter.
 
-In the project directory, you can run:
+### Microsoft SQL Server Management Studio (SSMS)
+In SSMS highlight a table name and press Alt+F1 to get the table info. You must have the database the table is in selected. Copy the table info into your clipboard and click the 'Import Clipboard' button to fill the table and generate the classes.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm run deploy`
-
-Deploys the site to https://nathanspencer1.github.io/sql-to-csharp. Runs `npm run build` followed by `gh-pages -d build`. Deploys an optimized build to github pages. See https://github.com/gitname/react-gh-pages. The repo needs to be set to Deploy from the `gh-pages` branch. See https://github.com/nathanspencer1/sql-to-csharp/settings/pages.
-
-## Add Hotkey to SSMS
+### Add Hotkey to SSMS
 Save a .bat file anywhere on your machine with the command line to open the SQL to C# URL.
 ```cmd
 start "" https://nathanspencer1.github.io/sql-to-csharp/
@@ -31,7 +21,7 @@ To set a hotkey for the external tool, go to _Tools > Options... > Keyboard_ and
 
 ![image](https://user-images.githubusercontent.com/80844931/194935630-70ba5e54-316a-4842-a4c9-a01d3fcd7c1f.png)
 
-## PostgreSQL Support
+### PostgreSQL Support
 
 This tool can be utilized for PostgreSQL databases by running the following query and importing the column information.
 ```sql
@@ -50,3 +40,19 @@ SELECT
 FROM information_schema.columns
 WHERE table_name = 'your_table_name';
 ```
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm run deploy`
+
+Deploys the site to https://nathanspencer1.github.io/sql-to-csharp. Runs `npm run build` followed by `gh-pages -d build`. Deploys an optimized build to github pages. See https://github.com/gitname/react-gh-pages. The repo needs to be set to Deploy from the `gh-pages` branch. See https://github.com/nathanspencer1/sql-to-csharp/settings/pages.

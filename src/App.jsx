@@ -6,7 +6,6 @@ import CSharpClass from "./components/CSharp/EntityClass";
 import ImportClipboardButton from "./components/ImportClipboardButton.tsx";
 import TableInfoGrid from "./components/TableInfoGrid.tsx";
 import DataTransferClass from "./components/CSharp/DataTransferClass";
-import HelpButton from "./components/HelpButton.tsx";
 import NullableReferenceTypeCheckBox from "./components/NullableReferenceTypeCheckBox.tsx";
 
 function App() {
@@ -41,7 +40,6 @@ function App() {
             <a href="https://github.com/nathanspencer1/sql-to-csharp" target={"blank"}>
               <i className="fa fa-github" />
             </a>
-            <HelpButton />
             <ImportClipboardButton onImport={handleClipboardImport} />
             <NullableReferenceTypeCheckBox checked={nullableReferenceTypes} setChecked={setNullableReferenceTypes}/>
           </div>
