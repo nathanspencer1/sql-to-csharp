@@ -1,4 +1,4 @@
-# SQL to C#
+# [SQL to C#](https://nathanspencer1.github.io/sql-to-csharp)
 
 A tool used to help create Entity and DTO (Data Transfer Object) C# classes from a database table.
 
