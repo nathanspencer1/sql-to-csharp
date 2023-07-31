@@ -30,3 +30,23 @@ In SSMS go to _Tools > External Tools..._. Enter a title and the path to the .ba
 To set a hotkey for the external tool, go to _Tools > Options... > Keyboard_ and search for _Tools.ExternalCommand1_. The number at the end will match the index of the entry in the External Tools window. Assign a hotkey and click OK.
 
 ![image](https://user-images.githubusercontent.com/80844931/194935630-70ba5e54-316a-4842-a4c9-a01d3fcd7c1f.png)
+
+## PostgreSQL Support
+
+This tool can be utilized for PostgreSQL databases by running the following query and importing the column information.
+```sql
+SELECT
+  column_name,
+  CASE data_type
+    WHEN 'integer' THEN 'int'
+    WHEN 'boolean' THEN 'bit'
+    ELSE data_type
+  END as type,
+  CASE is_generated WHEN 'NEVER' THEN 'no' ELSE 'yes' END as computed,
+  character_maximum_length as length,
+  numeric_precision as prec,
+  numeric_scale as scale,
+  is_nullable as nullable
+FROM information_schema.columns
+WHERE table_name = 'your_table_name';
+```
